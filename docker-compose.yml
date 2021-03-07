@@ -1,0 +1,24 @@
+version: "3.6"
+services:
+  setup:
+    image: ubuntu:20.10
+    command: tail -f /dev/null
+    volumes:
+      - ./lower:/lower:ro
+      - type: bind
+        source: ./merged
+        target: /merged
+        bind:
+          propagation: shared
+    privileged: true
+
+  user:
+    image: ubuntu:20.10
+    command: tail -f /dev/null
+    volumes:
+      - ./lower:/lower:ro
+      - type: bind
+        source: ./merged
+        target: /merged
+        bind:
+          propagation: shared
